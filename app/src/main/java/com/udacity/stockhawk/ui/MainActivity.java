@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         swipeRefreshLayout.setOnRefreshListener(this);
+        // shouldn't make a call to OnSomething directly. They should be methods triggered by
+        // external forces!
         swipeRefreshLayout.setRefreshing(true);
         onRefresh();
 
