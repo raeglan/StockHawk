@@ -68,6 +68,11 @@ public final class PrefUtils {
         return prefs.getString(key, defaultValue);
     }
 
+    /**
+     * Toggles the display between absolute or percentage prices.
+     *
+     * @param context to get the keys
+     */
     public static void toggleDisplayMode(Context context) {
         String key = context.getString(R.string.pref_display_mode_key);
         String absoluteKey = context.getString(R.string.pref_display_mode_absolute_key);

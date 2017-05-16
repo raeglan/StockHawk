@@ -6,11 +6,10 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingEnd="24dp"
-    android:paddingStart="24dp">
+    android:paddingEnd="16dp"
+    android:paddingStart="0dp">
 
     <TextView
-        android:transitionName="stock_name"
         android:id="@+id/symbol"
         style="@style/StockSymbolTextStyle"
         android:layout_width="wrap_content"
@@ -18,38 +17,37 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="GOOG" />
+        android:layout_marginStart="4dp"
+        tools:text="GOOG"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 
 
     <TextView
-        android:transitionName="stock_price"
-        android:id="@+id/price"
-        style="@style/BidPriceTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="10sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/change"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="1000.00" />
-
-    <TextView
-        android:transitionName="stock_change"
-        android:id="@+id/change"
-        style="@style/PercentChangeTextStyle"
+        android:id="@+id/tv_no_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/percent_change_pill_green"
         android:paddingEnd="3dp"
         android:paddingStart="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="100%" />
+        android:text="@string/stock_not_found"
+        android:layout_marginEnd="8dp"
+        style="@style/PercentChangeTextStyle"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:srcCompat="@drawable/ic_warning_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="4dp"
+        android:contentDescription="@string/warning_symbol"/>
 </android.support.constraint.ConstraintLayout>

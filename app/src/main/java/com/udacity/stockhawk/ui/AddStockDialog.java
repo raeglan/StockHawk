@@ -55,7 +55,9 @@ public class AddStockDialog extends DialogFragment {
                 });
         builder.setNegativeButton(getString(R.string.dialog_cancel), null);
 
-        Dialog dialog = builder.create();
+        AlertDialog dialog = builder.create();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE);
 
         Window window = dialog.getWindow();
         if (window != null) {
