@@ -1,10 +1,14 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -44,9 +48,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView error;
     private StockAdapter adapter;
 
+    /**
+     * This will start the detail activity making a transition using the clicked symbol element.
+     *
+     * @param symbol              which stock was clicked, as string.
+     * @param sharedSymbolElement the view that contains the stock, used for transitioning, if null
+     *                            no transition happens.
+     */
     @Override
-    public void onClick(String symbol) {
+    public void onClick(String symbol, @Nullable View sharedSymbolElement) {
         Timber.d("Symbol clicked: %s", symbol);
+        Uri data = Contract.Quote.makeUriForStock(symbol);
+        Intent detailIntent = new Intent(this, DetailActivity.class);
+        detailIntent.setData(data);
+        detailIntent.setAction(symbol);
+        Bundle optionsBundle = null;
+        if(sharedSymbolElement != null) {
+            optionsBundle = ActivityOptionsCompat
+                    .makeSceneTransitionAnimation(this, sharedSymbolElement,
+                            getString(R.string.shared_symbol_element_name)).toBundle();
+        }
+        startActivity(detailIntent, optionsBundle);
     }
 
     @Override

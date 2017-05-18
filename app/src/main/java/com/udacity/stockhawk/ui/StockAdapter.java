@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
@@ -20,7 +21,6 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Optional;
 
 class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
@@ -31,8 +31,13 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
     private Cursor cursor;
     private final StockAdapterOnClickHandler clickHandler;
 
-    private final int TYPE_STOCK = 0;
-    private final int TYPE_NO_STOCK = 1;
+    private final static int TYPE_STOCK = 0;
+    private final static int TYPE_NO_STOCK = 1;
+
+    /**
+     * Just so that the user doesn't see a cascade of toasts while clicking invalid stock.
+     */
+    Toast mFeedbackToast;
 
     StockAdapter(Context context, StockAdapterOnClickHandler clickHandler) {
         this.context = context;
@@ -122,7 +127,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
 
     interface StockAdapterOnClickHandler {
-        void onClick(String symbol);
+        void onClick(String symbol, View sharedSymbolElement);
     }
 
     /**
@@ -134,7 +139,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
     @Override
     public int getItemViewType(int position) {
         cursor.moveToPosition(position);
-        if (cursor.getInt(Contract.Quote.POSITION_EXISTS) == 1)
+        if (cursor.getInt(Contract.Quote.POSITION_IS_REAL) == 1)
             return TYPE_STOCK;
         else
             return TYPE_NO_STOCK;
@@ -168,9 +173,18 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            cursor.moveToPosition(adapterPosition);
-            int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
-            clickHandler.onClick(cursor.getString(symbolColumn));
+            int type = StockAdapter.this.getItemViewType(adapterPosition);
+            if (type == TYPE_NO_STOCK) {
+                if (mFeedbackToast != null)
+                    mFeedbackToast.cancel();
+                mFeedbackToast = Toast.makeText(context, R.string.hint_not_a_real_stock,
+                        Toast.LENGTH_SHORT);
+                mFeedbackToast.show();
+            } else {
+                cursor.moveToPosition(adapterPosition);
+                int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
+                clickHandler.onClick(cursor.getString(symbolColumn), symbol);
+            }
         }
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_light_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="@string/widget_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/lv_stocks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/widget_margin"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/tv_empty_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/widget_empty_hint"
+            android:visibility="invisible"
+            android:background="@android:color/white"/>
+    </FrameLayout>
+
+</LinearLayout>

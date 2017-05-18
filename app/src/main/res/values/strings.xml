@@ -12,6 +12,8 @@
     <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
     <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
 
+    <string name="shared_symbol_element_name" translatable="false">symbol</string>
+
     <string name="default_stocks_yahoo" translatable="false">YHOO</string>
     <string name="default_stocks_apple" translatable="false">AAPL</string>
     <string name="default_stocks_microsoft" translatable="false">MSFT</string>
@@ -38,5 +40,17 @@
     <string name="stock_not_found">Stock not found!</string>
     <string name="warning_symbol">Warning symbol</string>
     <string name="history">History</string>
+    <string name="error_no_detail">We are sorry for the inconvenience, but no data could be retrieved for this stock.</string>
+
+    <!-- The app can only display prices in us-dollars for now, so the symbol should not be translated -->
+    <string name="dollar_with_plus" translatable="false">+$</string>
+    <string name="plus_symbol">+</string>
+    <string name="symbol">Symbol</string>
+    <string name="change">Change</string>
+    <string name="price">Price</string>
+    <string name="hint_not_a_real_stock">That stock isn\'t real try again after you create a company with that symbol.</string>
+    <string name="add_new_stock">Add new stock</string>
+    <string name="widget_empty_hint">Nothing to see, to add a quota open Stockhawk</string>
+    <string name="widget_title">Real time stock values!</string>
 
 </resources>

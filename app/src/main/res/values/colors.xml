@@ -10,4 +10,6 @@
 
     <color name="material_warning">#ffea00</color>
 
+    <color name="material_light_background">#9fa8da</color>
+
 </resources>

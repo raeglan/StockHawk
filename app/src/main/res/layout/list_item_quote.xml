@@ -10,7 +10,7 @@
     android:paddingStart="24dp">
 
     <TextView
-        android:transitionName="stock_name"
+        android:transitionName="@string/shared_symbol_element_name"
         android:id="@+id/symbol"
         style="@style/StockSymbolTextStyle"
         android:layout_width="wrap_content"

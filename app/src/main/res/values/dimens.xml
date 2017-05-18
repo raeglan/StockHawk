@@ -1,3 +1,5 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="dot_graph_radius">2dp</dimen>
+    <dimen name="widget_margin">0dp</dimen>
 </resources>
